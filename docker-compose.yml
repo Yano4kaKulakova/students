@@ -1,7 +1,7 @@
 services:
   web:
     build: .
-    command: rails s -b 0.0.0.0
+    command: bash -c "until pg_isready -h db -p 5432; do sleep 2; done && rails s -b 0.0.0.0"
     volumes:
       - ruby-2.7.2-gems:/usr/local/bundle
       - .:/app
@@ -12,7 +12,7 @@ services:
   db:
     image: postgres:10
     volumes:
-      - db-data:/var/lib/postgresql
+      - db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: yourpassword
 
