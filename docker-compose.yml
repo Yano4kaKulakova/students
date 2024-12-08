@@ -12,7 +12,7 @@ services:
   db:
     image: postgres:10
     volumes:
-      - db-data:/var/lib/postgresql
+      - db-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: yourpassword
 
