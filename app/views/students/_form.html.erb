@@ -1,0 +1,111 @@
+<%= form_with(model: student, class: 'student-form') do |form| %>
+  <% if student.errors.any? %>
+    <div class="alert alert-danger">
+      <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
+      <ul>
+        <% student.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+    <%= form.label :surname, "Фамилия", class: "form-label" %>
+    <%= form.text_field :surname, class: "form-control" %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :first_name, "Имя", class: "form-label" %>
+    <%= form.text_field :first_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :last_name, "Отчество", class: "form-label" %>
+    <%= form.text_field :last_name, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :school_id, "Школа", class: "form-label" %>
+    <%= form.collection_select(:school_id, School.all, :id, ->(school) { "#{school.name} №#{school.number}" }, {}, class: "form-control") %>
+  </div>
+  
+  <div class="form-group">
+    <%= form.label :klass_id, "Класс", class: "form-label" %>
+    <%= form.collection_select(:klass_id, Klass.includes(:school), :id, ->(klass) { "#{klass.number} #{klass.letter} (Школа: #{klass.school.name} №#{klass.school.number})" }, {}, class: "form-control") %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Сохранить", class: "btn btn-submit" %>
+  </div>
+<% end %>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .student-form {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 5px;
+    display: inline-block;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+  }
+
+  .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+</style>

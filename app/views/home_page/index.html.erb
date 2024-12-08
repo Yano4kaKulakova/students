@@ -1,0 +1,84 @@
+<% content_for :title, "Главная страница" %>
+<h1 class="page-title">Главная страница</h1>
+
+<div class="container">
+  <div class="section">
+    <h3 class="section-title">Всё что касается учеников</h3>
+    <div class="links">
+      <%= link_to 'Всё что касается учеников', controller: 'students', class: 'btn btn-link' %><br>
+      <%= link_to 'Список студентов класса', controller: 'list_klass_students', class: 'btn btn-link' %><br>
+    </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">Всё что касается классов</h3>
+    <div class="links">
+      <%= link_to 'Всё что касается классов', controller: 'klasses', class: 'btn btn-link' %><br>
+	  <%= link_to 'Список классов школы', controller: 'list_school_klasses', class: 'btn btn-link' %><br>
+      <%= link_to 'Список студентов класса', controller: 'list_klass_students', class: 'btn btn-link' %><br>
+	  </div>
+  </div>
+
+  <div class="section">
+    <h3 class="section-title">Всё что касается школ</h3>
+    <div class="links">
+      <%= link_to 'Всё что касается школ', controller: 'schools', class: 'btn btn-link' %><br>
+    </div>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-title {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+  }
+
+  .section {
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  .links {
+    font-size: 16px;
+  }
+
+  .btn-link {
+    text-decoration: none;
+    color: #007bff;
+    font-size: 16px;
+    display: inline-block;
+    margin-bottom: 10px;
+    transition: color 0.3s ease;
+  }
+
+  .btn-link:hover {
+    color: #0056b3;
+  }
+
+  .btn-link:active {
+    color: #004085;
+  }
+</style>

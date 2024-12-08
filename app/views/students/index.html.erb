@@ -1,0 +1,159 @@
+<% content_for :title, "Список студентов" %>
+
+<div class="container">
+  <h1 class="page-title">Список студентов</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %>
+
+  <!-- Уведомление -->
+  <%= notice && content_tag(:div, notice, class: 'alert alert-success') %>
+
+  <!-- Кнопка для добавления нового студента -->
+  <div class="add-button">
+    <%= link_to "Добавить нового студента", new_student_path, class: 'btn btn-primary' %>
+  </div>
+
+  <!-- Таблица со списком студентов -->
+  <table class="students-table">
+    <thead>
+      <tr>
+        <th>Код</th>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Школа</th>
+        <th>Класс</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.id %></td>
+          <td><%= student.surname %></td>
+          <td><%= student.first_name %></td>
+          <td><%= student.last_name %></td>
+          <td>
+            <%= student.school.present? ? "#{student.school.name} №#{student.school.number}" : "Школа не указана" %>
+          </td>
+          <td>
+            <%= student.klass.present? ? "#{student.klass.number} #{student.klass.letter}" : "Класс не указан" %>
+          </td>
+          <td>
+            <%= link_to "Показать", student, class: 'btn btn-show' %> |
+            <%= link_to "Редактировать", edit_student_path(student), class: 'btn btn-edit' %> |
+            <%= link_to "Удалить", student, method: :delete, data: { confirm: 'Вы уверены?' }, class: 'btn btn-delete' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    width: 85%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .page-title {
+    font-size: 30px;
+    margin-bottom: 25px;
+    font-weight: 600;
+    color: #3a3a3a;
+  }
+
+  .btn {
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #fff;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-back {
+    background-color: #8e8e8e;
+    margin-bottom: 15px;
+  }
+
+  .btn-primary {
+    background-color: #5c6bc0;
+  }
+
+  .btn-show {
+    background-color: #4caf50;
+  }
+
+  .btn-edit {
+    background-color: #ff9800;
+  }
+
+  .btn-delete {
+    background-color: #f44336;
+  }
+
+  .btn:hover {
+    opacity: 0.9;
+  }
+
+  .add-button {
+    text-align: right;
+    margin-bottom: 20px;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  .students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+
+  .students-table th,
+  .students-table td {
+    padding: 15px;
+    text-align: left;
+  }
+
+  .students-table th {
+    background-color: #5c6bc0;
+    color: white;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .students-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+
+  .students-table tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+  }
+
+  .alert {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border-radius: 5px;
+    padding: 12px;
+    margin-bottom: 25px;
+  }
+</style>

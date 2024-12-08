@@ -1,0 +1,114 @@
+<% content_for :title, "Информация о классе" %>
+
+<div class="container">
+  <!-- Уведомление -->
+  <%= notice && content_tag(:div, notice, class: 'alert alert-success') %>
+
+  <!-- Заголовок страницы -->
+  <h1 class="page-title">Информация о классе</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %>
+<br><br>
+
+  <!-- Информация о классе -->
+  <div class="klass-details">
+    <p><strong>Номер класса:</strong> <%= @klass.number %></p>
+    <p><strong>Буква класса:</strong> <%= @klass.letter %></p>
+    <p><strong>Школа:</strong> 
+      <%= @klass.school.present? ? "#{@klass.school.name} №#{@klass.school.number}" : "Школа не указана" %>
+    </p>
+    <p><strong>Количество учеников:</strong> <%= @klass.students_count %></p>
+  </div>
+
+  <!-- Действия -->
+  <div class="action-buttons">
+    <%= link_to "Редактировать", edit_klass_path(@klass), class: 'btn btn-edit' %>
+    <%= link_to "Вернуться к списку", klasses_path, class: 'btn btn-back' %>
+    <%= button_to "Удалить", @klass, method: :delete, data: { confirm: "Вы уверены?" }, class: 'btn btn-delete' %>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .klass-details {
+    margin-bottom: 30px;
+  }
+
+  .klass-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-edit {
+    background-color: #f39c12;
+    color: #fff;
+  }
+
+  .btn-back {
+    background-color: #555555;
+    color: #fff;
+  }
+
+  .btn-delete {
+    background-color: #e74c3c;
+    color: #fff;
+  }
+
+  .alert {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+</style>

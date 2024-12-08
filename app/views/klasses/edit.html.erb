@@ -1,0 +1,86 @@
+<% content_for :title, "Редактирование класса" %>
+
+<div class="container">
+  <h1 class="page-title">Редактирование класса</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %>
+<br><br>
+
+  <%= render "form", klass: @klass %>
+
+  <br>
+
+  <div class="action-buttons">
+    <%= link_to "Вернуться к списку классов", klasses_path, class: 'btn btn-back' %>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  .action-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 12px;
+    justify-content: flex-start;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-show {
+    background-color: #28a745;
+    color: #fff;
+  }
+
+  .btn-back {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  .alert {
+    background-color: #e8f5e9;
+    color: #388e3c;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 25px;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    color: #155724;
+  }
+</style>

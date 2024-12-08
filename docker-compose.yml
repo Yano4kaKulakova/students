@@ -1,0 +1,22 @@
+services:
+  web:
+    build: .
+    command: rails s -b 0.0.0.0
+    volumes:
+      - ruby-2.7.2-gems:/usr/local/bundle
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+  db:
+    image: postgres:10
+    volumes:
+      - db-data:/var/lib/postgresql
+    environment:
+      POSTGRES_PASSWORD: yourpassword
+
+volumes:
+  ruby-2.7.2-gems:
+    external: true
+  db-data:

@@ -1,0 +1,106 @@
+<% content_for :title, "Список студентов класса" %>
+
+<div class="container">
+  <h1 class="page-title">Список студентов класса</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %>
+
+  <br><br>
+
+  <%= form_tag(choose_school_path, method: "get", class: 'school-select-form') do %>
+    <div class="form-group">
+      <%= label_tag(:school_id, "Выберите школу:", class: 'form-label') %>
+      <% school_array = School.all.map { |school| ["#{school.name} №#{school.number}", school.id] } %>
+      <%= select_tag(:school_id, options_for_select(school_array), class: 'form-control') %>
+    </div>
+    <div class="form-group">
+      <%= submit_tag("Далее", class: 'btn btn-submit') %>
+    </div>
+  <% end %>
+</div>
+
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  .section-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-back {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  .btn-submit {
+    background-color: #007bff;
+    color: #fff;
+    width: 100%;
+  }
+
+  .btn-submit:hover {
+    background-color: #0056b3;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  .form-label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
+
+  .form-control {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .form-control:focus {
+    border-color: #007bff;
+    outline: none;
+  }
+</style>

@@ -1,0 +1,60 @@
+<% content_for :title, "Добавление нового класса" %>
+
+<div class="container">
+  <h1 class="page-title">Добавление нового класса</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %>
+<br><br>
+
+  <%= render "form", klass: @klass %>
+
+  <div class="back-link">
+    <%= link_to "Вернуться к списку классов", klasses_path, class: "btn btn-back" %>
+  </div>
+</div>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f7f9fc;
+    margin: 0;
+    padding: 0;
+  }
+
+  .container {
+    width: 60%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+  }
+
+  .page-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+
+  .back-link {
+    margin-top: 20px;
+  }
+
+  .btn {
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 14px;
+    display: inline-block;
+    transition: background-color 0.3s ease;
+  }
+
+  .btn-back {
+    background-color: #6c757d;
+  }
+
+  .btn-back:hover {
+    background-color: #5a6268;
+  }
+</style>

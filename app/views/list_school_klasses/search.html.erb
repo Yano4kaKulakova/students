@@ -1,0 +1,108 @@
+<% content_for :title, "Список классов школы" %>
+
+<div class="container">
+  <h1 class="page-title">Список классов школы</h1>
+
+  <%= link_to 'Главная страница', controller: 'home_page', class: 'btn btn-back' %> | 
+  <%= link_to 'Назад', action: 'index', class: 'btn btn-back' %>
+
+  <br><br>
+
+  <% school = School.find(params[:q]) %> <!-- Получаем школу из параметров -->
+<h2 class="school-title">Школа: <%= school.name %> №<%= school.number %></h2>
+
+  <br>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th>Код</th>
+      <th>Номер</th>
+      <th>Буква</th>
+      <th>Количество учеников</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% school.klasses.each do |klass| %> <!-- Проходим по классам этой школы -->
+      <tr>
+        <td><%= klass.id %></td>
+        <td><%= klass.number %></td>
+        <td><%= klass.letter %></td>
+        <td><%= klass.students_count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+<style>
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+  }
+
+  .container {
+    width: 70%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+  }
+
+  .page-title {
+    font-size: 32px;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+
+  .school-title, .klass-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #333;
+  }
+
+  .btn {
+    padding: 12px 18px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+
+  .btn:hover {
+    transform: scale(1.05);
+  }
+
+  .btn-back {
+    background-color: #6c757d;
+    color: #fff;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+
+  .table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd;
+  }
+
+  .table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+  }
+
+  .table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
